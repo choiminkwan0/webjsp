@@ -5,16 +5,17 @@ import java.io.Serializable;
 public class Book implements Serializable {
     private static final long serialVersionUID=-4274700572038677000L;
 
-    private String bookId;
-    private String name;
-    private int unitPrice;
-    private String author;
-    private String description;
-    private String publisher;
-    private String category;
-    private long unitsInStock;
-    private String releaseDate;
-    private String condition;
+    private String bookId;          //책 ID
+    private String name;            //책이름
+    private int unitPrice;          //가격
+    private String author;          //저자
+    private String description;     //설명
+    private String publisher;       //출판사
+    private String category;        //분류
+    private long unitsInStock;      //재고개수
+    private String releaseDate;     //출판일(년/월/일)
+    private String condition;       //신제품 or 구제품
+    private String filename;        //이미지 파일명
     
     public Book() {
         super();
@@ -56,6 +57,9 @@ public class Book implements Serializable {
     public void setCondition(String condition) {
         this.condition = condition;
     }
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
@@ -89,5 +93,7 @@ public class Book implements Serializable {
     public String getCondition() {
         return condition;
     }
-    
+    public String getFilename() {
+        return filename;
+    }
 }
