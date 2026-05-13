@@ -5,90 +5,91 @@
 <title>도서 등록</title>
 </head>
 <body>
-<div class="container px-4 text-center">
+<div class="container">
     <%@ include file="menu.jsp" %>
     
-    <div class="container px-4 text-center">
-        <div class="container-sm">
-        <h1 class="display-3">도서 등록</h1>
+    <div class="py-5 text-center bg-body-secondary">
+        <div class="container">
+        <h1 class="display-4">도서 등록</h1>
         <p class="lead">Book Addition</p>
         </div>
     </div>
 
-    <div class="container text-center">
+    <div class="container">
     <form name="newBook" action="./processAddBook.jsp" class="form-horizontal" method="post" enctype="multipart/form-data">
-  <div class="row align-items-center">
-  <label class="col">도서코드</label>
-    <div class="col">
+  
+    <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label fw-bold">도서코드</label>
+    <div class="col-sm-9">
       <input type="text" name="bookId" class="form-control">
     </div>
     </div>
-    <div class="row align-items-center">
-    <label class="col">도서명</label>
-    <div class="col">
+    <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label fw-bold">도서명</label>
+    <div class="col-sm-9">
       <input type="text" name="name" class="form-control">
     </div>
     </div>
-    <div class="row align-items-center">
-    <label class="col">가격</label>
-    <div class="col">
+    <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label fw-bold">가격</label>
+    <div class="col-sm-9">
       <input type="text" name="unitPrice" class="form-control">
     </div>
     </div>
-    <div class="row align-items-center">
-    <label class="col">저자</label>
-    <div class="col">
+    <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label fw-bold">저자</label>
+    <div class="col-sm-9">
       <input type="text" name="author" class="form-control">
     </div>
     </div>
-    <div class="row align-items-center">
-    <label class="col">출판사</label>
-    <div class="col">
+    <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label fw-bold">출판사</label>
+    <div class="col-sm-9">
       <input type="text" name="publisher" class="form-control">
     </div>
     </div>
-    <div class="row align-items-center">
-    <label class="col">출판일</label>
-    <div class="col">
+    <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label fw-bold">출판일</label>
+    <div class="col-sm-9">
       <input type="text" name="releaseDate" class="form-control">
     </div>
     </div>
-    <div class="row align-items-center">
-    <label class="col">상세정보</label>
-    <div class="col">
+    <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label fw-bold">상세정보</label>
+    <div class="col-sm-9">
       <textarea name="description" cols="50" rows="2" class="form-control" placeholder="100자 이상 적어주세요"></textarea>
     </div>
     </div>
-    <div class="row align-items-center">
-    <label class="col">분류</label>
-    <div class="col">
+    <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label fw-bold">분류</label>
+    <div class="col-sm-9">
       <input type="text" name="category" class="form-control">
     </div>
     </div>
-    <div class="row align-items-center">
-    <label class="col">재고</label>
-    <div class="col">
+    <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label fw-bold">재고</label>
+    <div class="col-sm-9">
       <input type="text" name="unitsInStock" class="form-control">
     </div>
     </div>
-    <div class="row align-items-center">
-    <label class="col">상태</label>
-    <div class="col">
+    <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label fw-bold">상태</label>
+    <div class="col-sm-9">
       <input type="radio" name="condition" value="New"> 신규도서
       <input type="radio" name="condition" value="Old"> 중고도서
       <input type="radio" name="condition" value="EBook"> E-Book
     </div>
     </div>
-    <div class="row align-items-center">
-    <label class="col">이미지</label>
-    <div class="col">
-      <input type="file" name="BookImage" class="form-control">
+    <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label fw-bold">이미지</label>
+    <div class="col-sm-9">
+      <input type="file" name="bookImage" class="form-control">
     </div>
     </div>
 
-    <div class="row align-items-center">
-    <div class="col">
-    <input type="submit" class="btn btn-secondary" value="등록">
+    <div class="mb-3 row">
+    <div class="col-sm-9">
+    <input type="submit" class="btn btn-primary" value="등록">
     </div>
     </div>
     </form>

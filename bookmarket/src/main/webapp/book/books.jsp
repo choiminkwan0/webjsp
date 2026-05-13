@@ -10,11 +10,11 @@
 <title>도서 목록</title>
 </head>
 <body>
-<div class="container">
+<div class="container text-center">
   <%@ include file="menu.jsp" %>
 
-  <div class="container px-4 text-center">
-  <div class="container-fluid">
+  <div class="py-5 text-center bg-body-secondary">
+  <div class="container">
   <h1 class="display-4">도서목록</h1>
   <p class="lead">BookList</p>
   </div>
@@ -24,21 +24,21 @@
     ArrayList<Book> listOfBooks=dao.getAllBooks();
 %>
 
-<div class="container text-center">
+<div class="row row-cols-1 row-cols-md-3 g-4">
     <%
         for (int i=0; i < listOfBooks.size(); i++) {
             Book book=listOfBooks.get(i);
     %>
-    <div class="row align-items-center">
-        <div class="col-sm">
-            <img src="./resources/images/<%=book.getFilename() %>" style="width : 250; height : 350;" />
+    <div class="col">
+        <div class="p-3">
+            <img src="/bookmarket/resources/images/<%=book.getFilename() %>" style="width : 250; height : 350;" />
             <h5><b><%=book.getName() %></b></h5>
             <p> <%=book.getAuthor() %>
             <br><%=book.getPublisher() %> | <%=book.getReleaseDate() %>
             <p> <%=book.getDescription().substring(0,60) %>...
             <p> <%=book.getUnitPrice() %>원
             <p> <a href="./book.jsp?id=<%=book.getBookId() %>"
-        class="btn btn-secondary" role="button"> 상세 정보 &raquo;></a>
+        class="btn btn-primary" role="button"> 상세 정보 &raquo;</a>
         </div>
     </div>
     <%

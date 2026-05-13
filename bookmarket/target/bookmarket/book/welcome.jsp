@@ -6,20 +6,20 @@
     <title>Welcome</title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container text-center">
     <%@ include file="menu.jsp"%>
      <%!String greeting = "도서 쇼핑몰에 오신 것을 환영합니다!";
      String tagline = "Welcome to Web Market!";%>
-     <div class="container-sm">
-        <div class="container-fluid py-5">
-        <p class="h1"><%=greeting%></p>
-        <p class="h3">BookMarket</p>
+     <div class="py-5 text-center bg-body-secondary">
+        <div class="container">
+        <h1 class="display-4"><%=greeting%></h1>
+        <p class="lead">BookMarket</p>
         </div>     
      </div>
 
-    <div class="container-fluid">
-        <div class="col-md-12">
-            <div class="h-100 p-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="p-3">
             <h3><%=tagline%></h3>
             <%
                 Date day = new java.util.Date();
