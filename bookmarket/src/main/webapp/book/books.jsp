@@ -15,7 +15,7 @@
 
   <div class="py-5 text-center bg-body-secondary">
   <div class="container">
-  <h1 class="display-4">도서목록</h1>
+  <h1 class="display-4">도서 목록</h1>
   <p class="lead">BookList</p>
   </div>
 </div>
