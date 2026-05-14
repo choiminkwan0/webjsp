@@ -19,10 +19,10 @@
     }
 </script>
 <body>
-    <form name="loginform" action="validation02_process.jsp" method="post">
+    <form name="loginForm" action="validation02_process.jsp" method="post">
         <p> 아이디 : <input type="text" name="id">
         <p> 비밀번호 : <input type="password" name="passwd">
-        <p> <input type="submit" value="전송" onclick="checkForm()">
+        <p> <input type="button" value="전송" onclick="checkLogin()">
     </form>
 </body>
 </html>
