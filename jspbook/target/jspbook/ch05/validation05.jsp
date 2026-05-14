@@ -55,8 +55,8 @@
         <p> 비밀번호 : <input type="password" name="passwd">
         <p> 이름 : <input type="text" name="name">
         <p> 연락처 : <input type="hidden" name="phone1" value="010">010
-        -<input type="text" name="phone2" maxlength="4" size="4">
-        -<input type="text" name="phone3" maxlength="4" size="4">
+        - <input type="text" name="phone2" maxlength="4" size="4">
+        - <input type="text" name="phone3" maxlength="4" size="4">
         <p> 이메일 : <input type="text" name="email">
         <p> <input type="button" value="가입하기" onclick="checkMember()">
     </form>
