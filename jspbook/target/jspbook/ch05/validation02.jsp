@@ -6,11 +6,11 @@
 <script type="text/javascript">
     function checkLogin() {
         var form=document.loginForm;
-        if (form.id.value=="" && null) {
+        if (form.id.value=="" && form.id.value==null) {
             alert("아이디를 입력해주세요.");
             form.id.focus();
             return false;
-        } else if (form.passwd.value=="" && null) {
+        } else if (form.passwd.value=="" && form.id.value==null) {
             alert("비밀번호를 입력해주세요.");
             form.passwd.focus();
             return false;
