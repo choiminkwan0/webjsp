@@ -22,6 +22,7 @@
     <div class="container">
     <div class="text-end">
       <a href="?language=ko">Korean</a> | <a href="?language=en">English </a>
+      <a href="logout.jsp" class="btn btn-outline-primary">logout</a>
     </div>
     <form name="newBook" action="./processAddBook.jsp" class="form-horizontal" method="post" enctype="multipart/form-data">
   
