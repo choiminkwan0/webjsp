@@ -28,13 +28,13 @@
             }
         %>
         <form class="form-horizontal" action="j_security_check" method="post">
-        <div class="row mb-3">
+        <div class="col-md-4">
             <input type="text" class="form-control" name="j_username" required autofucus>
-            <label for="floatingInput" class="col-sm-2 col-form-label">ID</label>
+            <label for="floatingInput">ID</label>
         </div>
-        <div class="row mb-3">
+        <div class="col-md-4">
             <input type="password" class="form-control" name="j_password">
-            <label for="floatingInput" class="col-sm-2 col-form-label">Password</label>
+            <label for="floatingInput">Password</label>
         </div>
         <button class="btn btn-primary" type="submit">로그인</button>
         </form>
