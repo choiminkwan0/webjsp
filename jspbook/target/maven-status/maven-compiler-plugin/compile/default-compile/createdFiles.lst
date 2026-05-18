@@ -1,2 +1,5 @@
+com\filter\LogFileFilter.class
+com\filter\AuthenFilter.class
 com\dao\Calculator.class
 com\dao\Person.class
+com\filter\InitParamFilter.class

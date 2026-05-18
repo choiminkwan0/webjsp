@@ -1,2 +1,5 @@
 c:\webjsp\jspbook\src\main\java\com\dao\Calculator.java
 c:\webjsp\jspbook\src\main\java\com\dao\Person.java
+c:\webjsp\jspbook\src\main\java\com\filter\AuthenFilter.java
+c:\webjsp\jspbook\src\main\java\com\filter\InitParamFilter.java
+c:\webjsp\jspbook\src\main\java\com\filter\LogFileFilter.java
