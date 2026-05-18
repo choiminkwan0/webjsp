@@ -27,13 +27,13 @@
                 out.println("</div>");
             }
         %>
-        <form class="form-horizontal" action="j_security_check" method="post">
-        <div class="col-md-4">
-            <input type="text" class="form-control" name="j_username" required autofucus>
+        <form class="form-floating" action="j_security_check" method="post">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" name="j_username" required autofucus>
             <label for="floatingInput">ID</label>
         </div>
-        <div class="col-md-4">
-            <input type="password" class="form-control" name="j_password">
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingInput" name="j_password">
             <label for="floatingInput">Password</label>
         </div>
         <button class="btn btn-primary" type="submit">로그인</button>
