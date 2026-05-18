@@ -16,6 +16,7 @@ public class Book implements Serializable {
     private String releaseDate;     //출판일(년/월/일)
     private String condition;       //신제품 or 구제품
     private String filename;        //이미지 파일명
+    private int quantity;
     
     public Book() {
         super();
@@ -60,6 +61,9 @@ public class Book implements Serializable {
     public void setFilename(String filename) {
         this.filename = filename;
     }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
@@ -95,5 +99,8 @@ public class Book implements Serializable {
     }
     public String getFilename() {
         return filename;
+    }
+    public int getQuantity() {
+        return quantity;
     }
 }
