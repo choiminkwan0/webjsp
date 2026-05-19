@@ -25,7 +25,7 @@
     <div class="col">
     <table width="100%">
     <tr>
-    <td align="left"><a herf="./deleteCart.jsp?cartId=<%=cartId%>" class="btn btn-danger">삭제하기</a></td>
+    <td align="left"><a href="./deleteCart.jsp?cartId=<%=cartId%>" class="btn btn-danger">삭제하기</a></td>
     <td align="right"><a href="#" class="btn btn-success">주문하기</a></td>
     </tr>
     </table>
@@ -57,7 +57,7 @@
 <td><a href="./removeCart.jsp?id=<%=book.getBookId() %>" class="badge text-bg-warning">삭제</a></td>
 </tr>
 <%
-    }
+}
 %>
 <tr>
     <th></th>
