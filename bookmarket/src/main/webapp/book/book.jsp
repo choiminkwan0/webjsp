@@ -51,7 +51,7 @@
             <p> <b>재고수</b> <%=book.getUnitsInStock() %>
             <h4><%=book.getUnitPrice() %>원</h4>
             <p> <form name="addForm" action="./addCart.jsp?id=<%=book.getBookId()%>" method="post">
-            <p> <a href="#" class="btn btn-primary"> 도서주문 &raquo;</a>
+            <p> <a href="#" class="btn btn-primary" onclick="addToCart()"> 도서주문 &raquo;</a>
             <p> <a href="./cart.jsp" class="btn btn-success"> 장바구니 &raquo;</a>
             <p> <a href="./books.jsp" class="btn btn-secondary"> 도서목록 &raquo;</a>
             </form>

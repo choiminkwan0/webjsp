@@ -12,7 +12,7 @@
 
     BookRepository dao=BookRepository.getInstance();
 
-    Book book=dao.getBookId(id);
+    Book book=dao.getBookById(id);
     if (book==null) {
         response.sendRedirect("exceptionNoBookId.jsp");
     }

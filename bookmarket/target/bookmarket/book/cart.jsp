@@ -21,23 +21,23 @@
   </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
+<div class="row align-items-center">
+    <div class="row">
     <table width="100%">
     <tr>
-    <td align="left"><a href="./deleteCart.jsp?cartId=<%=cartId%>" class="btn btn-danger">삭제하기</a></td>
-    <td align="right"><a href="#" class="btn btn-success">주문하기</a></td>
+    <td align="right"><a href="./deleteCart.jsp?cartId=<%=cartId%>" class="btn btn-danger">삭제하기</a></td>
+    <td align="left"><a href="./shippingInfo.jsp?cartId=<%=cartId%>" class="btn btn-success">주문하기</a></td>
     </tr>
     </table>
 </div>
-<div style="padding-top: 50px">
+<div class="py-5">
 <table class="table table-striped table-hover">
 <tr>
-    <th>도서</th>
-    <th>가격</th>
-    <th>수량</th>
-    <th>소계</th>
-    <th>비고</th>
+    <th class="text-center">도서</th>
+    <th class="text-center">가격</th>
+    <th class="text-center">수량</th>
+    <th class="text-center">소계</th>
+    <th class="text-center">비고</th>
 </tr>
 <%
     int sum=0;
@@ -50,11 +50,11 @@
         sum=sum + total;
 %>
 <tr>
-<td><%=book.getBookId() %> - <%=book.getName() %></td>
-<td><%=book.getUnitPrice() %></td>
-<td><%=book.getQuantity() %></td>
-<td><%=total %></td>
-<td><a href="./removeCart.jsp?id=<%=book.getBookId() %>" class="badge text-bg-warning">삭제</a></td>
+<td class="text-center"><%=book.getBookId() %> - <%=book.getName() %></td>
+<td class="text-center"><%=book.getUnitPrice() %></td>
+<td class="text-center"><%=book.getQuantity() %></td>
+<td class="text-center"><%=total %></td>
+<td class="text-center"><a href="./removeCart.jsp?id=<%=book.getBookId() %>" class="badge text-bg-warning text-decoration-none">삭제</a></td>
 </tr>
 <%
 }
@@ -62,12 +62,12 @@
 <tr>
     <th></th>
     <th></th>
-    <th>총액</th>
-    <th><%=sum %></th>
+    <th class="text-end">총액</th>
+    <th class="text-center text-danger"><%=sum %>원</th>
     <th></th>
 </tr>
 </table>
-<a href="./books.jsp" class="btn btn-secondary"> &laquo; 쇼핑 계속하기 </a>
+<a href="./books.jsp" class="btn btn-primary"> &laquo; 쇼핑 계속하기 </a>
     </div>
 </div>
 

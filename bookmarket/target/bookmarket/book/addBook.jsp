@@ -9,7 +9,7 @@
 <body>
 <fmt:setLocale value='<%=request.getParameter("language") %>' />
 <fmt:bundle basename="bundle.message">
-<div class="container">
+<div class="container text-center">
     <%@ include file="menu.jsp" %>
     
     <div class="py-5 text-center bg-body-secondary">
