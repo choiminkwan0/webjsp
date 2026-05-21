@@ -52,6 +52,7 @@
     <web-resource-collection>
         <web-resource-name>bookmarket</web-resource-name>
         <url-pattern>/book/addBook.jsp</url-pattern>
+        <url-pattern>/book/editBook.jsp</url-pattern>
         <http-method>GET</http-method>
     </web-resource-collection>
     <auth-constraint>
