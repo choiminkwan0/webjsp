@@ -5,21 +5,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>Welcome</title>
 </head>
-<body>
-<div class="container text-center">
+<body class="bg-light">
+<div class="container py-4">
     <%@ include file="header.jsp"%>
-     <%!String greeting = "";
-     String tagline = "Welcome to Apt Web!";%>
-     <div class="py-5 text-center bg-body-secondary">
-        <div class="container">
-        <h1 class="display-4"><%=greeting%></h1>
+    <%!
+        String greeting = "안녕하세요! 환영합니다.";
+        String tagline = "Welcome to Apt Web!";
+    %>
+     <div class="p-5 mb-4 bg-body-tertiary rounded-3 shadow-sm text-center">
+        <div class="container-fluid py-3">
+        <h1 class="display-5 fw-bold text-dark"><%=greeting%></h1>
         <p class="lead">AptWeb</p>
         </div>     
      </div>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="p-3">
+    <div class="row justify-content-center my-5">
+        <div class="col-md-6 col-lg-5">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4 text-center">
             <h3><%=tagline%></h3>
             <%
                 Date day = new java.util.Date();
@@ -38,6 +41,7 @@
                 response.setIntHeader("Refresh", 5);
             %>
             <p> <%=(new java.util.Date()) %>
+                </div>
             </div>
         </div>
     </div>

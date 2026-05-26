@@ -12,6 +12,7 @@ public class FacilityDTO implements Serializable {
     private String condition; // 시설 상태
     private int peopleInStock; // 수용인원
     private String fileName; // 파일명
+    private int quantity;
 
     public FacilityDTO() {
         super();
@@ -81,6 +82,14 @@ public class FacilityDTO implements Serializable {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
 }
