@@ -1,44 +1,29 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="dto.FacilityDTO" %>
 <%@ page import="dao.FacilityDAO" %>
 
 <%
-    String name = request.getParameter("name");
-    if (name == null || name.trim().equals("")) {
-        response.sendRedirect("facilitys.jsp");
-        return;
+    request.setCharacterEncoding("utf-8");
+    
+    String fno = request.getParameter("no");
+    int no = 0;
+
+    if (fno != null && !fno.isEmpty()) {
+        no = Integer.parseInt(fno);
     }
 
     FacilityDAO dao = FacilityDAO.getInstance();
-    FacilityDTO facility = dao.getFacilityDTOByName(name);
+    FacilityDTO facility = dao.getFacilityDTOByNo(no);
     
     if (facility == null) {
         response.sendRedirect("exceptionNoFacilityName.jsp");
         return;
     }
 
-    ArrayList<FacilityDTO> list = (ArrayList<FacilityDTO>) session.getAttribute("reservelist");
-    if (list == null) {
-        list = new ArrayList<FacilityDTO>();
-        session.setAttribute("reservelist", list);
+    String reserveDate = request.getParameter("reserveDate");
+    if (reserveDate == null || reserveDate.trim().equals("")) {
+        reserveDate = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
     }
 
-    int cnt = 0;
-    for (int i = 0; i < list.size(); i++) {
-        FacilityDTO reserveQnt = list.get(i);
-        if (reserveQnt.getFacilityName().equals(name)) {
-            cnt++;
-            int orderQuantity = reserveQnt.getQuantity() + 1;
-            reserveQnt.setQuantity(orderQuantity);
-            break;
-        }
-    }
-
-    if (cnt == 0) {
-        facility.setQuantity(1);
-        list.add(facility);
-    }
-
-    response.sendRedirect("myPage.jsp");
+    response.sendRedirect("reserveDetail.jsp?facilityNo=" + facility.getFacilityNo() + "&reserveDate=" + reserveDate);
 %>

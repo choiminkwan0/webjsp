@@ -38,7 +38,7 @@
                     <p class="mb-1"><b>이용 금액 :</b> <%=facility.getFacilityPrice()%>원</p>
                     <p class="mb-1"><b>시설 상태 :</b> <%=facility.getCondition()%></p>
                     <p class="mb-0"><b>수용 인원 :</b> <%=facility.getPeopleInStock()%>명</p>
-                    <p> <a href="./facility.jsp?name=<%=facility.getFacilityName() %>" class="btn btn-primary" role="button"> 상세 정보 &raquo;</a></p>
+                    <p> <a href="./facility.jsp?no=<%=facility.getFacilityNo() %>" class="btn btn-primary" role="button"> 상세 정보 &raquo;</a></p>
                 </div>
             </div>
         </div>

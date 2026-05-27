@@ -39,19 +39,17 @@ public class FacilityDAO {
     public ArrayList<FacilityDTO> getAllFacility() {
         return listOfFacilityDTOs;
     }
-    public FacilityDTO getFacilityDTOByName(String facilityName) {
-        FacilityDTO facilityDTOByName = null;
-
-        for (int i = 0; i < listOfFacilityDTOs.size(); i++) {
-            FacilityDTO facilityDTO = listOfFacilityDTOs.get(i);
-
-            if (facilityDTO != null && facilityDTO.getFacilityName() != null && facilityDTO.getFacilityName().equals(facilityName)) {
-                facilityDTOByName = facilityDTO;
-                break;
+    public FacilityDTO getFacilityDTOByNo(int facilityNo) {
+        if (listOfFacilityDTOs != null) {
+            for (int i = 0; i < listOfFacilityDTOs.size(); i++) {
+                FacilityDTO facilityDTO = listOfFacilityDTOs.get(i);   
+        
+                if (facilityDTO != null && facilityDTO.getFacilityNo() == facilityNo) {
+                    return facilityDTO; 
+                }
             }
         }
-
-        return facilityDTOByName; 
+        return null;
     }
     public void addFacility(FacilityDTO facilityDTO) {
         listOfFacilityDTOs.add(facilityDTO);
