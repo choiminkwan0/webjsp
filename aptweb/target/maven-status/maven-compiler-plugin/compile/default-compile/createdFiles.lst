@@ -1,2 +1,4 @@
 dao\FacilityDAO.class
+dao\ReserveDAO.class
 dto\FacilityDTO.class
+dto\ReserveDTO.class
