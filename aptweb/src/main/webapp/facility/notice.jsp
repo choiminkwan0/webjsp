@@ -3,9 +3,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="dao.NoticeDAO" %>
 <%@ page import="dto.NoticeDTO" %>
-
+<%-- 공지사항 페이지 --%>
 <%
-    NoticeDAO dao = new NoticeDAO();
+    //데이터 조회: 페이지가 열리면 DB에서 게시글 리스트를 가져옴
+    NoticeDAO dao = NoticeDAO.getInstance();
     List<NoticeDTO> list = dao.getNoticeList();
 %>
 <html>
@@ -92,22 +93,33 @@
                 </tr>
             </thead>
             <tbody>
-                <% if(list != null && !list.isEmpty()) { 
+                <% 
+                    //데이터 출력,검증 -> 리스트가 null인지 체크
+                    if(list != null && !list.isEmpty()) { 
+                        int count = list.size();
                     for(NoticeDTO notice : list) { %>
                     <tr>
-                        <td class="text-center text-muted"><%= notice.getNoticeId() %></td>
-                        <td><a href="<%= request.getContextPath() %>/facility/notice_detail.jsp?id=<%= notice.getNoticeId() %>" class="notice-link"><%= notice.getTitle() %></a></td>
-                        <td class="text-center text-muted"><%= notice.getupLoadDate().toString().substring(0, 10) %></td>
+                        <td class="text-center text-muted"><%= count-- %></td>
+                        <td><a href="<%= request.getContextPath() %>/facility/notice_detail.jsp?id=<%= notice.getNoticeNo() %>" class="notice-link"><%= notice.getTitle() %></a></td>
+                        <%--날짜 확인 ->결과를 10글자로 짤라 YYYY-MM-DD형태로 보이게 함--%>
+                        <td class="text-center text-muted"><%= notice.getRegDate() != null ? notice.getRegDate().toString().substring(0, 10) : "날짜없음" %></td>
                     </tr>
                 <%  } 
-                } else { %>
+                } else { // 데이터가 없을 때 안내 메세지(공지사항이 없을때)
+                    %>
                     <tr><td colspan="3" class="text-center">등록된 공지사항이 없습니다.</td></tr>
                 <% } %>
             </tbody>
         </table>
 
-        <div class="text-end">
+       <%-- 수정: 버튼 영역에 관리자 권한 체크 로직 추가 --%>
+        <div class="d-flex justify-content-between">
             <button type="button" class="btn btn-light-custom" onclick="location.href='<%= request.getContextPath() %>/facility/welcome.jsp'">이전 페이지로</button>
+            
+            <%-- ADMIN 권한이 있을때만 공지사항 등록 버튼이 보임--%>
+            <% if ("ADMIN".equals(session.getAttribute("sessionRole"))) { %>
+                <button type="button" class="btn btn-dark" onclick="location.href='<%= request.getContextPath() %>/facility/admin_notice_write.jsp'">공지사항 등록</button>
+            <% } %>
         </div>
     </div>
 </div>

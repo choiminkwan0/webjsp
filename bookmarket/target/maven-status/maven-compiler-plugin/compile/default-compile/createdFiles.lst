@@ -1,4 +1,0 @@
-dao\BookRepository.class
-dto\Book.class
-filter\LogFileFilter.class
-filter\LogFilter.class

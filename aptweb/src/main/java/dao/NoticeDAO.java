@@ -1,45 +1,151 @@
 package dao;
 
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import dto.NoticeDTO;
 
+// Notice관련 관리 클래스
 public class NoticeDAO {
+    // 싱글톤 인스턴스
+    private static NoticeDAO instance = new NoticeDAO();
 
-    // (1) 목록 조회 기능
-    public List<NoticeDTO> getNoticeList() {
+    private NoticeDAO() {
+    }
+
+    public static NoticeDAO getInstance() {
+        return instance;
+    }
+
+    // (1) 목록 조회 , 최신글 우선(DESC)
+    public List<NoticeDTO> getNoticeList() throws SQLException {
         List<NoticeDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM notice ORDER BY noticeNo DESC";
 
-        //공지사항 1
-        NoticeDTO n1 = new NoticeDTO();
-        n1.setNoticeId(1);
-        n1.setTitle("아파트 공지사항 테스트입니다.");
-        n1.setContent("현재 가짜 데이터를 사용하여 목록을 불러오는 중입니다.");
-        n1.setupLoadDate(new Date());
-
-        //공지사항 2
-        NoticeDTO n2 = new NoticeDTO();
-        n2.setNoticeId(2);
-        n2.setTitle("시스템 점검 안내");
-        n2.setContent("내일 오전 2시부터 시스템 점검이 있습니다.");
-        n2.setupLoadDate(new Date());
-
-        list.add(n1);
-        list.add(n2);
-
+        try {
+            conn = DBconn.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                list.add(new NoticeDTO(
+                        rs.getInt("noticeNo"),
+                        rs.getString("title"),
+                        rs.getString("content"),
+                        rs.getInt("writerNo"),
+                        rs.getInt("hit"),
+                        rs.getDate("reg_date")));
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (pstmt != null) pstmt.close();
+            if (conn != null) conn.close();
+        }
         return list;
     }
 
-    // (2) 상세 조회 기능
-    public NoticeDTO getNotice(int noticeId) {
-        // 특정 ID에 해당하는 가상의 데이터 생성
-        NoticeDTO notice = new NoticeDTO();
-        notice.setNoticeId(noticeId);
-        notice.setTitle("상세보기 테스트 글 번호: " + noticeId);
-        notice.setContent("이 글은 상세 조회 기능을 테스트하기 위한 가짜 데이터입니다.");
-        notice.setupLoadDate(new Date());
+    // (2) 상세 조회 , PK인 noticeNo를 이용해 1개의 데이터만 가져옴
+    public NoticeDTO getNotice(int noticeNo) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM notice WHERE noticeNo = ?";
+        NoticeDTO dto = null;
+
+        try {
+            conn = DBconn.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, noticeNo);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                dto = new NoticeDTO(
+                        rs.getInt("noticeNo"),
+                        rs.getString("title"),
+                        rs.getString("content"),
+                        rs.getInt("writerNo"),
+                        rs.getInt("hit"),
+                        rs.getDate("reg_date"));
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (pstmt != null) pstmt.close();
+            if (conn != null) conn.close();
+        }
+        return dto;
+    }
+
+    // (3) 조회수 증가 , 게시물 클릭시 , hit 1 증가
+    public void incrementHit(int noticeNo) throws SQLException { 
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "UPDATE notice SET hit = hit + 1 WHERE noticeNo = ?";
         
-        return notice;
+        try {
+            conn = DBconn.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, noticeNo);
+            pstmt.executeUpdate();
+        } finally {
+            if (pstmt != null) pstmt.close();
+            if (conn != null) conn.close();
+        }
+    }
+
+    // (4) 공지 삭제 메서드
+    public void deleteNotice(int noticeNo) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "DELETE FROM notice WHERE noticeNo = ?";
+
+        try {
+            conn = DBconn.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, noticeNo);
+            pstmt.executeUpdate();
+        } finally {
+            if (pstmt != null) pstmt.close();
+            if (conn != null) conn.close();
+        }
+    }
+
+    // (5) 공지 업데이트(수정) 메서드
+    public void updateNotice(NoticeDTO dto) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "UPDATE notice SET title = ?, content = ? WHERE noticeNo = ?";
+
+        try {
+            conn = DBconn.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, dto.getTitle());
+            pstmt.setString(2, dto.getContent());
+            pstmt.setInt(3, dto.getNoticeNo());
+            pstmt.executeUpdate();
+        } finally {
+            if (pstmt != null) pstmt.close();
+            if (conn != null) conn.close();
+        }
+    }
+
+    // (6) 공지사항 등록 메서드
+    public void insertNotice(NoticeDTO dto) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "INSERT INTO notice (noticeNo, title, content, writerNo, hit, reg_date) " +
+                "VALUES (notice_seq.NEXTVAL, ?, ?, ?, 0, SYSDATE)";
+
+        try {
+            conn = DBconn.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, dto.getTitle());
+            pstmt.setString(2, dto.getContent());
+            pstmt.setInt(3, dto.getWriterNo());
+            pstmt.executeUpdate();
+        } finally {
+            if (pstmt != null) pstmt.close();
+            if (conn != null) conn.close();
+        }
     }
 }

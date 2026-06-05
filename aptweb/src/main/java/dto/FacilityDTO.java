@@ -5,14 +5,14 @@ import java.io.Serializable;
 public class FacilityDTO implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private int facilityNo; // 고유번호 (pk)
+    private int facilityNo; // 고유번호 (pk) , 시설 번호
     private String facilityName; // 시설명
     private String description; // 시설 설명
-    private int facilityPrice; // 가격
+    private int facilityPrice; // 시설 이용 가격
     private String condition; // 시설 상태
-    private int peopleInStock; // 수용인원
-    private String fileName; // 파일명
-    private int quantity;
+    private int peopleInStock; // 수용 가능 인원
+    private String fileName; // 사진 파일명
+    private int quantity;   // 현재 예약중인 인원
 
     public FacilityDTO() {
         super();
@@ -22,6 +22,17 @@ public class FacilityDTO implements Serializable {
         this.facilityNo=facilityNo;
         this.facilityName=facilityName;
         this.facilityPrice=facilityPrice;
+    }
+
+    public FacilityDTO(int facilityNo, String facilityName, String description, int facilityPrice, String condition, int peopleInStock, String fileName, int quantity) {
+        this.facilityNo = facilityNo;
+        this.facilityName = facilityName;
+        this.description = description;
+        this.facilityPrice = facilityPrice;
+        this.condition = condition;
+        this.peopleInStock = peopleInStock;
+        this.fileName = fileName;
+        this.quantity = quantity;
     }
 
     public static long getSerialversionuid() {

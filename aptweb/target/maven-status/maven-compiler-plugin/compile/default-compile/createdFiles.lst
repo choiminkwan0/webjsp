@@ -1,4 +1,11 @@
 dao\FacilityDAO.class
 dao\ReserveDAO.class
 dto\FacilityDTO.class
+dao\DBconn.class
+dto\ReserveStatus.class
+dao\NoticeDAO.class
+dao\UserDAO.class
+dto\UserDTO.class
+dto\NoticeDTO.class
 dto\ReserveDTO.class
+filter\LogFileFilter.class

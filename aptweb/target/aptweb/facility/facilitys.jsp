@@ -4,8 +4,8 @@
 <%@ page import="dao.FacilityDAO" %>
 <html>
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>시설 목록</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<title>시설 목록</title>
 </head>
 <body class="bg-light">
 <div class="container text-center py-4">
@@ -17,7 +17,6 @@
             <p class="lead">Facility List</p>
         </div>     
     </div>
-
     <%
         FacilityDAO dao=FacilityDAO.getInstance();
         ArrayList<FacilityDTO> listOfFacilityDTOs = dao.getAllFacility();
@@ -33,12 +32,18 @@
             <div class="card h-100 shadow-sm border-0">
                 <div class="card-body p-4 text-center">
                     <img src="/aptweb/resources/images/<%=facility.getFileName() %>" style="width:350px; height:350px;" />
-                    <h5 class="fw-bold text-primary mb-3">No.<%=facility.getFacilityNo()%> <%=facility.getFacilityName()%></h5>
+                    <h5 class="fw-bold text-primary mb-3"><%=facility.getFacilityName()%></h5>
                     <hr>
                     <p class="mb-1"><b>이용 금액 :</b> <%=facility.getFacilityPrice()%>원</p>
                     <p class="mb-1"><b>시설 상태 :</b> <%=facility.getCondition()%></p>
                     <p class="mb-0"><b>수용 인원 :</b> <%=facility.getPeopleInStock()%>명</p>
-                    <p> <a href="./facility.jsp?no=<%=facility.getFacilityNo() %>" class="btn btn-primary" role="button"> 상세 정보 &raquo;</a></p>
+                    <p class="mt-3">
+                        <% if ("게스트하우스".equals(facility.getFacilityName())) { %>
+                            <a href="./guesthouse.jsp?no=<%=facility.getFacilityNo() %>" class="btn btn-primary" role="button"> 상세 정보 &raquo;</a>
+                        <% } else { %>
+                            <a href="./facility.jsp?no=<%=facility.getFacilityNo() %>" class="btn btn-primary" role="button"> 상세 정보 &raquo;</a>
+                        <% } %>
+                    </p>
                 </div>
             </div>
         </div>
